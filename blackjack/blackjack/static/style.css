@@ -1,0 +1,8 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    text-align: center;
+    margin-top: 20px;
+}
