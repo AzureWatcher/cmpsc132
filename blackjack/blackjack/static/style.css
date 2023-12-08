@@ -2,7 +2,22 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
+Copy code
 #game-container {
     text-align: center;
     margin-top: 20px;
+}
+
+#player-hand, #dealer-hand {
+    margin-top: 20px;
+}
+
+.card {
+    display: inline-block;
+    width: 50px;
+    height: 80px;
+    border: 1px solid #000;
+    margin: 0 5px;
+}
 }
