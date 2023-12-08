@@ -15,4 +15,26 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Blackjack Game</h1>
+        <div id="player-hand">
+            <!-- Player's cards will be displayed here -->
+        </div>
+        <div id="dealer-hand">
+            <!-- Dealer's cards will be displayed here -->
+        </div>
+        <button id="hit-btn">Hit</button>
+        <button id="stand-btn">Stand</button>
+        <button id="deal-btn">Deal</button>
+        <p id="result"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
