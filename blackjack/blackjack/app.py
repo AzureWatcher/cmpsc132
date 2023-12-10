@@ -54,6 +54,25 @@ def get_state():
         'dealer_value': calculate_hand_value(dealer_hand)
     })
 
+#New hit
+@app.route('/hit')
+def hit():
+    global player_hand, deck
+
+    if calculate_hand_value(player_hand) <= 21:
+        player_hand.append(deal_card())
+        player_value = calculate_hand_value(player_hand)
+
+        if player_value > 21:
+            return jsonify({'message': 'Bust! You lose!', 'result': 'lose'})
+        elif player_value == 21:
+            return jsonify({'message': 'Blackjack! You win!', 'result': 'win'})
+        else:
+            return jsonify({'message': f'You drew a {player_hand[-1]}', 'result': 'continue'})
+    else:
+        return jsonify({'message': 'You already busted!', 'result': 'continue'})
+
+''' Previous code
 # Endpoint to handle hitting
 @app.route('/hit')
 def hit():
@@ -66,7 +85,7 @@ def hit():
         return jsonify({'message': 'Blackjack! You win!', 'result': 'win'})
     else:
         return jsonify({'message': '', 'result': 'continue'})
-
+'''
 # Endpoint to handle standing
 @app.route('/stand')
 def stand():
