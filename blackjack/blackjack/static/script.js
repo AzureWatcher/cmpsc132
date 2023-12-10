@@ -27,7 +27,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('New round started.');
             });
     });
+    function hit() {
+    fetch('/hit')
+        .then(response => response.json())
+        .then(data => {
+            updateState();
+            alert(data.message);
 
+            // Check if the game is over
+            if (data.result !== 'continue') {
+                // Optionally, you can disable the "Hit" and "Stand" buttons or take other actions
+                document.getElementById('hit-btn').disabled = true;
+                document.getElementById('stand-btn').disabled = true;
+            }
+        });
+}
     function updateState() {
         fetch('/get_state')
             .then(response => response.json())
