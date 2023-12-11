@@ -7,12 +7,61 @@ let dealerHand = [];
 
 // Function to start a new game
 function startGame() {
-    deck = getDeck();
-    shuffleDeck(deck);
-    playerHand = [drawCard(), drawCard()];
-    dealerHand = [drawCard(), drawCard()];
-    // Implement the rest of the game logic
+       // Reset hands
+       playerHand = [];
+       dealerHand = [];
+   
+       // Get a new shuffled deck
+       deck = getDeck();
+       shuffleDeck(deck);
+   
+       // Deal initial cards
+       playerHand.push(drawCard());
+       dealerHand.push(drawCard());
+       playerHand.push(drawCard());
+       dealerHand.push(drawCard());
+   
+       // Display initial game state (you'll need to implement this part)
+       displayGameState();
+   
+       // Implement the rest of the game logic
+   }
+   
+   // Function to display the initial game state
+   function displayGameState() {
+       // You'll need to update your HTML to display the cards and other game information
+       // For simplicity, let's assume you have div elements with IDs 'player-hand' and 'dealer-hand'
+          // Update player's hand in the HTML
+    $('#player-hand').html(`<strong>Player Hand:</strong> ${formatHand(playerHand)}`);
+
+    // Update dealer's hand in the HTML, only showing the first card
+    $('#dealer-hand').html(`<strong>Dealer Hand:</strong> ${formatHand([dealerHand[0]])} [Hidden]`);
 }
+
+// Function to format a hand for display
+function formatHand(hand) {
+    // Create a string representation of the hand
+    return hand.map(card => `${card.rank} of ${card.suit}`).join(', ');
+   }
+   
+   // Function to handle user actions (hit, stand, etc.)
+   function handleAction(action) {
+       // Implement logic for hit, stand, etc.
+   }
+   
+   $(document).ready(function() {
+       $("#start-btn").click(function() {
+           $("#start-btn").hide();
+           $("#game-container").show();
+           startGame(); // Start the game when the button is clicked
+       });
+   
+       // Implement event listeners for other game actions (hit, stand, etc.)
+       // Example: $("#hit-btn").click(function() { handleAction('hit'); });
+       // Example: $("#stand-btn").click(function() { handleAction('stand'); });
+   });
+    // Implement the rest of the game logic
+
 
 // Function to get a new deck
 function getDeck() {
