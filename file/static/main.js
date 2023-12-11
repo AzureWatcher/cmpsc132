@@ -31,8 +31,17 @@ function startGame() {
    function displayGameState() {
        // You'll need to update your HTML to display the cards and other game information
        // For simplicity, let's assume you have div elements with IDs 'player-hand' and 'dealer-hand'
-       $('#player-hand').text(`Player Hand: ${JSON.stringify(playerHand)}`);
-       $('#dealer-hand').text(`Dealer Hand: ${JSON.stringify(dealerHand)}`);
+          // Update player's hand in the HTML
+    $('#player-hand').html(`<strong>Player Hand:</strong> ${formatHand(playerHand)}`);
+
+    // Update dealer's hand in the HTML, only showing the first card
+    $('#dealer-hand').html(`<strong>Dealer Hand:</strong> ${formatHand([dealerHand[0]])} [Hidden]`);
+}
+
+// Function to format a hand for display
+function formatHand(hand) {
+    // Create a string representation of the hand
+    return hand.map(card => `${card.rank} of ${card.suit}`).join(', ');
    }
    
    // Function to handle user actions (hit, stand, etc.)
