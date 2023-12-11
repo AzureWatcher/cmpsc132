@@ -59,8 +59,19 @@ function formatHand(hand) {
        // Implement event listeners for other game actions (hit, stand, etc.)
        // Example: $("#hit-btn").click(function() { handleAction('hit'); });
        document.getElementById('start-btn').addEventListener('click', start_game);
-       // Example: $("#stand-btn").click(function() { handleAction('stand'); });
-   });
+       
+       $("#hit-btn").click(function() {
+        handleAction('hit');
+    });
+
+    $("#stand-btn").click(function() {
+        handleAction('stand');
+    });
+
+    $("#deal-btn").click(function() {
+        handleAction('deal');
+    });
+});
     // Implement the rest of the game logic
 
 
