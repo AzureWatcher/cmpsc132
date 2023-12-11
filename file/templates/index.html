@@ -1,24 +1,25 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blackjack</title>
+    <title>Blackjack Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
-    <h1>Blackjack Game</h1>
-    <button id="start-btn">Start Game</button>
-    <div id="game-container" style="display: none;">
+    <div id="game-container">
+        <h1>Blackjack Game</h1>
+        <div id="hands-container">
+            <div id="player-hand">Player Hand: </div>
+            <div id="dealer-hand">Dealer Hand: </div>
+        </div>
+        <button id="start-btn">Start Game</button>
         <button id="hit-btn">Hit</button>
         <button id="stand-btn">Stand</button>
-        <button id="deal-btn">Deal</button>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
-<!-- Inside your HTML file -->
-<div id="player-hand"></div>
-<div id="dealer-hand"></div>
