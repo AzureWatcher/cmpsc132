@@ -47,6 +47,13 @@ function formatHand(hand) {
    // Function to handle user actions (hit, stand, etc.)
    function handleAction(action) {
        // Implement logic for hit, stand, etc.
+       switch(action) {
+        case 'hit':
+            // Logic for "Hit" action
+            var newCard = drawCard; // Get a new card
+            console.log('You got a new card: ' + newCard);
+            displayGameState(); // Update the player's score
+            break;
    }
    
    $(document).ready(function() {
@@ -124,3 +131,4 @@ function drawCard() {
     return deck.pop();
     // Implement logic to draw a card from the deck
 }
+   }
