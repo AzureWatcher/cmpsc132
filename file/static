@@ -1,7 +1,0 @@
-$(document).ready(function() {
-    $("#start-btn").click(function() {
-        $("#start-btn").hide();
-        $("#game-container").show();
-        // Implement game logic here
-    });
-});
