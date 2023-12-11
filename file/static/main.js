@@ -65,7 +65,14 @@ $(document).ready(function() {
                 hasAce = true;
             }
         }
+        // Adjust for Ace if necessary
+        if (hasAce && total > 21) {
+            total -= 10;
+        }
 
+        return total;
+    }
+    
     $('#start-btn').click(function() {
         startGame();
     });
