@@ -7,13 +7,16 @@
     <title>Blackjack</title>
 </head>
 <body>
-    <h1>Blackjack Game</h1>
-    <button id="start-btn">Start Game</button>
-    <div id="game-container" style="display:none;">
-        <!-- Game elements will go here -->
-    </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <h1>Blackjack Game</h1>
+    <button id="start-btn">Start Game</button>
+    <div id="game-container" style="display: none;">
+        <button id="hit-btn">Hit</button>
+        <button id="stand-btn">Stand</button>
+        <button id="deal-btn">Deal</button>
+    </div>
+
 </body>
 </html>
 <!-- Inside your HTML file -->

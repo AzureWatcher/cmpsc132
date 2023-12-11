@@ -47,6 +47,13 @@ function formatHand(hand) {
    // Function to handle user actions (hit, stand, etc.)
    function handleAction(action) {
        // Implement logic for hit, stand, etc.
+       //switch(action) {
+       // case 'hit':
+       //     // Logic for "Hit" action
+       //     var newCard = drawCard; // Get a new card
+       //     console.log('You got a new card: ' + newCard);
+       //     displayGameState(); // Update the player's score
+       //     break;
    }
    
    $(document).ready(function() {
@@ -58,8 +65,20 @@ function formatHand(hand) {
    
        // Implement event listeners for other game actions (hit, stand, etc.)
        // Example: $("#hit-btn").click(function() { handleAction('hit'); });
-       // Example: $("#stand-btn").click(function() { handleAction('stand'); });
-   });
+       document.getElementById('start-btn').addEventListener('click', start_game);
+       
+       $("#hit-btn").click(function() {
+        handleAction('hit');
+    });
+
+    $("#stand-btn").click(function() {
+        handleAction('stand');
+    });
+
+    $("#deal-btn").click(function() {
+        handleAction('deal');
+    });
+});
     // Implement the rest of the game logic
 
 
@@ -84,6 +103,7 @@ function getDeck() {
 }
     // Implement logic to generate a deck of cards
 
+// main.js
 
 // Function to shuffle the deck
 function shuffleDeck(deck) {
