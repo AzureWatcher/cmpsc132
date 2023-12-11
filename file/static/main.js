@@ -35,7 +35,8 @@ function getDeck() {
 }
     // Implement logic to generate a deck of cards
 
-
+// main.js
+document.getElementById('start-btn').addEventListener('click', start_game);
 // Function to shuffle the deck
 function shuffleDeck(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
