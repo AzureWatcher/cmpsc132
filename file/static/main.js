@@ -72,7 +72,30 @@ $(document).ready(function() {
 
         return total;
     }
-    
+
+    function playDealer() {
+        while (calculateHandTotal(dealerHand) < 17) {
+            dealerHand.push(drawCard());
+        }
+
+        updateHands();
+
+        // Determine the winner and end the game
+        determineWinner();
+    }
+
+    function determineWinner() {
+        const playerTotal = calculateHandTotal(playerHand);
+        const dealerTotal = calculateHandTotal(dealerHand);
+
+        if (playerTotal > 21 || (dealerTotal <= 21 && dealerTotal >= playerTotal)) {
+            // Dealer wins
+            alert('Dealer Wins!');
+        } else {
+            // Player wins
+            alert('Player Wins!');
+        }
+    }
     $('#start-btn').click(function() {
         startGame();
     });
@@ -80,9 +103,23 @@ $(document).ready(function() {
     $('#hit-btn').click(function() {
         playerHand.push(drawCard());
         updateHands();
+        const playerTotal = calculateHandTotal(playerHand);
+        if (playerTotal > 21) {
+            // Player busts
+            alert('Player Busts! Dealer Wins!');
+            // Reset the game
+            $('#start-btn').prop('disabled', false);
+            $('#hit-btn').prop('disabled', true);
+            $('#stand-btn').prop('disabled', true);
+        }
+    
     });
 
     $('#stand-btn').click(function() {
+        $('#hit-btn').prop('disabled', true);
+        $('#stand-btn').prop('disabled', true);
+
+        playDealer();
         // Implement dealer logic here (draw until 17)
         // Update the UI accordingly
         // Determine the winner
