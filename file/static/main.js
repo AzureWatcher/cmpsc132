@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     function getDeck() {
         const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
-        const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+        const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack (10)', 'Queen (10)', 'King (10)', 'Ace'];
         const deck = [];
 
         for (const suit of suits) {
@@ -35,18 +35,48 @@ $(document).ready(function() {
     }
 
     function startGame() {
-        playerHand = [drawCard(), drawCard()];
-        dealerHand = [drawCard(), drawCard()];
+        // Reset hands
+        playerHand = [];
+        dealerHand = [];
+
+        // Deal initial cards to player and dealer
+        playerHand.push(drawCard(), drawCard());
+        dealerHand.push(drawCard(), drawCard());
 
         updateHands();
         $('#start-btn').prop('disabled', true);
         $('#hit-btn').prop('disabled', false);
         $('#stand-btn').prop('disabled', false);
+
+        // Reset and display the initial scores
+        const playerTotal = 0;
+        const dealerTotal = 0;
+
+        // Update the player's score in the UI
+        $('#player-score').text('Player Score: ' + playerTotal);
+
+        // Update the dealer's score in the UI
+        $('#dealer-score').text('Dealer (CPU) Score: ' + dealerTotal);
+    }
+
+    function updateScores() {
+        // Calculate the totals
+        const playerTotal = calculateHandTotal(playerHand);
+        const dealerTotal = calculateHandTotal(dealerHand);
+    
+        // Update the player's score in the UI
+        $('#player-score').text('Player Score: ' + playerTotal);
+    
+        // Update the dealer's score in the UI
+        //$('#dealer-score').text('Dealer (CPU) Score: ' + dealerTotal);
     }
 
     function updateHands() {
         $('#player-hand').text(`Player Hand: ${formatHand(playerHand)}`);
-        $('#dealer-hand').text(`Dealer Hand: ${formatHand([dealerHand[0]])} [Hidden]`);
+        $('#dealer-hand').text(`Dealer (CPU) Hand: ${formatHand([dealerHand[0]])} [Hidden]`);
+
+        // Update the scores
+        updateScores();
     }
 
     function formatHand(hand) {
@@ -82,7 +112,7 @@ $(document).ready(function() {
 
         // Update the dealer's score in the UI
         const dealerTotal = calculateHandTotal(dealerHand);
-        $('#dealer-score').text('Dealer Score: ' + dealerTotal);
+        $('#dealer-score').text('Dealer (CPU) Score: ' + dealerTotal);
 
         // Determine the winner and end the game
         determineWinner();
@@ -92,12 +122,29 @@ $(document).ready(function() {
         const playerTotal = calculateHandTotal(playerHand);
         const dealerTotal = calculateHandTotal(dealerHand);
 
-        if (playerTotal > 21 || (dealerTotal <= 21 && dealerTotal >= playerTotal)) {
+        //Update the dealer's cards in the UI
+        $('#dealer-hand').text(`Dealer (CPU) Hand: ${formatHand(dealerHand)}`);
+        if (playerTotal > 21 || (dealerTotal <= 21 && dealerTotal > playerTotal)) {
             // Dealer wins
             alert('Dealer Wins!');
-        } else {
+            // Reset the game
+            $('#start-btn').prop('disabled', false);
+            $('#hit-btn').prop('disabled', true);
+            $('#stand-btn').prop('disabled', true);
+        } else if (dealerTotal > 21 || playerTotal > dealerTotal) {
             // Player wins
             alert('Player Wins!');
+            // Reset the game
+            $('#start-btn').prop('disabled', false);
+            $('#hit-btn').prop('disabled', true);
+            $('#stand-btn').prop('disabled', true);
+        } else if (playerTotal === dealerTotal) {
+            // It's a tie
+            alert('It\'s a tie!');
+            // Reset the game
+            $('#start-btn').prop('disabled', false);
+            $('#hit-btn').prop('disabled', true);
+            $('#stand-btn').prop('disabled', true);
         }
     }
     $('#start-btn').click(function() {
