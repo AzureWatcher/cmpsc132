@@ -80,6 +80,10 @@ $(document).ready(function() {
 
         updateHands();
 
+        // Update the dealer's score in the UI
+        const dealerTotal = calculateHandTotal(dealerHand);
+        $('#dealer-score').text('Dealer Score: ' + dealerTotal);
+
         // Determine the winner and end the game
         determineWinner();
     }
@@ -104,6 +108,8 @@ $(document).ready(function() {
         playerHand.push(drawCard());
         updateHands();
         const playerTotal = calculateHandTotal(playerHand);
+        // Update the player's score in the UI
+        $('#player-score').text('Player Score: ' + playerTotal);
         if (playerTotal > 21) {
             // Player busts
             alert('Player Busts! Dealer Wins!');
